@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="az">
 <head>
@@ -10,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/app.css" />
+  <link rel="stylesheet" href="{% static 'assets/css/app.css' %}" />
 </head>
 <body>
 
@@ -56,8 +58,8 @@
 
   <!-- Hero Banner -->
   <section class="hero">
-    <div class="hero-media" style="background-image: url('assets/images/img1.jpg');">
-      <img src="assets/images/img1.jpg" alt="Hero Banner" class="hero-img" />
+    <div class="hero-media" style="background-image: url('{% static 'assets/images/img1.jpg' %}');">
+      <img src="{% static 'assets/images/img1.jpg' %}" alt="Hero Banner" class="hero-img" />
       <div class="hero-content">
         <h1 class="hero-title">Blog saytimiza Xos Gelmisiniz</h1>
       </div>
@@ -74,7 +76,7 @@
           <div class="grid grid-3" id="posts-grid">
             <!-- Card 1 -->
             <article class="card" data-category="motivasiya" data-tags="həyat,motivasiya">
-              <img src="assets/images/blog-post-01.jpg" alt="Post 1" class="card-img" />
+              <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="Post 1" class="card-img" />
               <div class="card-body">
                 <div class="card-meta">
                   <span class="card-category">Motivasiya</span>
@@ -94,7 +96,7 @@
 
             <!-- Card 2 -->
             <article class="card" data-category="texnologiya" data-tags="texnologiya,həyat">
-              <img src="assets/images/blog-post-02.jpg" alt="Post 2" class="card-img" />
+              <img src="{% static 'assets/images/blog-post-02.jpg' %}" alt="Post 2" class="card-img" />
               <div class="card-body">
                 <div class="card-meta">
                   <span class="card-category">Texnologiya</span>
@@ -114,7 +116,7 @@
 
             <!-- Card 3 -->
             <article class="card" data-category="təbiət" data-tags="təbiət,sükunət">
-              <img src="assets/images/blog-post-03.jpg" alt="Post 3" class="card-img" />
+              <img src="{% static 'assets/images/blog-post-03.jpg' %}" alt="Post 3" class="card-img" />
               <div class="card-body">
                 <div class="card-meta">
                   <span class="card-category">Təbiət</span>
@@ -160,21 +162,21 @@
             <h3 class="widget-title">Populyar Yazılar</h3>
             <div class="popular-posts">
               <div class="popular-post">
-                <img src="assets/images/blog-post-01.jpg" alt="Popular Post" />
+                <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="Popular Post" />
                 <div>
                   <h4><a href="post-detail.html">Səhər motivasiyası</a></h4>
                   <span class="post-date">15 Noyabr 2025</span>
                 </div>
               </div>
               <div class="popular-post">
-                <img src="assets/images/blog-post-02.jpg" alt="Popular Post" />
+                <img src="{% static 'assets/images/blog-post-02.jpg' %}" alt="Popular Post" />
                 <div>
                   <h4><a href="post-detail.html">Texnologiya və həyat</a></h4>
                   <span class="post-date">12 Noyabr 2025</span>
                 </div>
               </div>
               <div class="popular-post">
-                <img src="assets/images/blog-post-03.jpg" alt="Popular Post" />
+                <img src="{% static 'assets/images/blog-post-03.jpg' %}" alt="Popular Post" />
                 <div>
                   <h4><a href="post-detail.html">Təbiət və sükunət</a></h4>
                   <span class="post-date">10 Noyabr 2025</span>
@@ -274,6 +276,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="assets/js/app.js"></script>
+  <script src="{% static 'assets/js/app.js' %}"></script>
 </body>
 </html>
