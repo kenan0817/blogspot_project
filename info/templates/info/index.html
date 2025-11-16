@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="BlogSpot - Ana səhifə" />
+  <title>BlogSpot — Ana səhifə</title>
+
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header-area">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">BLOG<span class="brand-accent">SPOT</span></a>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-label="Menyunu aç/bağla">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="header-actions">
+        <!-- Search -->
+        <div class="search-container">
+          <button type="button" class="search-toggle" aria-label="Axtarış">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-box">
+            <input type="text" id="search-input" class="search-input" placeholder="Axtarış..." />
+            <button type="button" class="search-close" aria-label="Bağla">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <button type="button" class="dark-mode-toggle" aria-label="Qaranlıq rejim">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <nav class="navbar">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link active" href="index.html">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">BLOGS</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-media" style="background-image: url('assets/images/img1.jpg');">
+      <img src="assets/images/img1.jpg" alt="Hero Banner" class="hero-img" />
+      <div class="hero-content">
+        <h1 class="hero-title">Blog saytimiza Xos Gelmisiniz</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Posts -->
+  <main class="section">
+    <div class="container">
+      <h2 class="section-title">TREND POSTS</h2>
+
+      <div class="blog-layout">
+        <div class="blog-main">
+          <div class="grid grid-3" id="posts-grid">
+            <!-- Card 1 -->
+            <article class="card" data-category="motivasiya" data-tags="həyat,motivasiya">
+              <img src="assets/images/blog-post-01.jpg" alt="Post 1" class="card-img" />
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-category">Motivasiya</span>
+                  <span class="card-reading-time"><i class="fas fa-clock"></i> 3 dəq</span>
+                </div>
+                <h3 class="card-title">Post Title One</h3>
+                <p class="card-text">Bu, birinci yazı üçün qısa təsvir yeridir. Detallar post səhifəsindədir.</p>
+                <div class="card-footer">
+                  <a class="btn btn-dark" href="post-detail.html">Read more</a>
+                  <div class="card-stats">
+                    <span><i class="fas fa-eye"></i> 125</span>
+                    <span><i class="fas fa-heart"></i> 32</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card" data-category="texnologiya" data-tags="texnologiya,həyat">
+              <img src="assets/images/blog-post-02.jpg" alt="Post 2" class="card-img" />
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-category">Texnologiya</span>
+                  <span class="card-reading-time"><i class="fas fa-clock"></i> 5 dəq</span>
+                </div>
+                <h3 class="card-title">Post Title Two</h3>
+                <p class="card-text">İkinci post üçün qısa izah. Texnologiya və həyat mövzuları.</p>
+                <div class="card-footer">
+                  <a class="btn btn-dark" href="post-detail.html">Read more</a>
+                  <div class="card-stats">
+                    <span><i class="fas fa-eye"></i> 89</span>
+                    <span><i class="fas fa-heart"></i> 21</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card" data-category="təbiət" data-tags="təbiət,sükunət">
+              <img src="assets/images/blog-post-03.jpg" alt="Post 3" class="card-img" />
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-category">Təbiət</span>
+                  <span class="card-reading-time"><i class="fas fa-clock"></i> 4 dəq</span>
+                </div>
+                <h3 class="card-title">Post Title Three</h3>
+                <p class="card-text">Üçüncü yazı üçün kiçik açıqlama. Daha çoxu post səhifəsində.</p>
+                <div class="card-footer">
+                  <a class="btn btn-dark" href="post-detail.html">Read more</a>
+                  <div class="card-stats">
+                    <span><i class="fas fa-eye"></i> 156</span>
+                    <span><i class="fas fa-heart"></i> 45</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination">
+            <a href="#" class="pagination-btn active">1</a>
+            <a href="#" class="pagination-btn">2</a>
+            <a href="#" class="pagination-btn">3</a>
+            <a href="#" class="pagination-btn">Next <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <!-- Categories -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Kateqoriyalar</h3>
+            <ul class="category-list">
+              <li><a href="#" data-filter="all">Hamısı <span>(12)</span></a></li>
+              <li><a href="#" data-filter="motivasiya">Motivasiya <span>(4)</span></a></li>
+              <li><a href="#" data-filter="texnologiya">Texnologiya <span>(5)</span></a></li>
+              <li><a href="#" data-filter="təbiət">Təbiət <span>(3)</span></a></li>
+            </ul>
+          </div>
+
+          <!-- Popular Posts -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Populyar Yazılar</h3>
+            <div class="popular-posts">
+              <div class="popular-post">
+                <img src="assets/images/blog-post-01.jpg" alt="Popular Post" />
+                <div>
+                  <h4><a href="post-detail.html">Səhər motivasiyası</a></h4>
+                  <span class="post-date">15 Noyabr 2025</span>
+                </div>
+              </div>
+              <div class="popular-post">
+                <img src="assets/images/blog-post-02.jpg" alt="Popular Post" />
+                <div>
+                  <h4><a href="post-detail.html">Texnologiya və həyat</a></h4>
+                  <span class="post-date">12 Noyabr 2025</span>
+                </div>
+              </div>
+              <div class="popular-post">
+                <img src="assets/images/blog-post-03.jpg" alt="Popular Post" />
+                <div>
+                  <h4><a href="post-detail.html">Təbiət və sükunət</a></h4>
+                  <span class="post-date">10 Noyabr 2025</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Teqlər</h3>
+            <div class="tag-cloud">
+              <a href="#" class="tag">Həyat</a>
+              <a href="#" class="tag">Motivasiya</a>
+              <a href="#" class="tag">Texnologiya</a>
+              <a href="#" class="tag">Təbiət</a>
+              <a href="#" class="tag">Sükunət</a>
+              <a href="#" class="tag">Uğur</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-content">
+        <h3>Xəbər bülleteninə abunə ol</h3>
+        <p>Yeni yazılar və yeniliklər barədə məlumat al</p>
+        <form class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Email ünvanınız" required />
+          <button type="submit" class="btn btn-dark">Abunə ol</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BLOGSPOT</h3>
+          <p>Sadə və müasir dizaynlı şəxsi blog platforması</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Səhifələr</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Səhifə</a></li>
+            <li><a href="blog.html">Bloq</a></li>
+            <li><a href="about.html">Haqqımda</a></li>
+            <li><a href="contact.html">Əlaqə</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Kateqoriyalar</h4>
+          <ul class="footer-links">
+            <li><a href="#">Motivasiya</a></li>
+            <li><a href="#">Texnologiya</a></li>
+            <li><a href="#">Təbiət</a></li>
+            <li><a href="#">Həyat</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Əlaqə</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> info@blogspot.az</li>
+            <li><i class="fas fa-phone"></i> +994 50 000 00 00</li>
+            <li><i class="fas fa-map-marker-alt"></i> Bakı, Azərbaycan</li>
+          </ul>
+        </div>
+      </div>
+      <p class="copyright">© 2025 Kenan Butdayev | Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" aria-label="Yuxarı qayıt">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Search Results Modal -->
+  <div class="search-results-modal" id="search-results">
+    <div class="search-results-content">
+      <button class="search-results-close">&times;</button>
+      <h3>Axtarış Nəticələri</h3>
+      <div class="search-results-list" id="search-results-list"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
