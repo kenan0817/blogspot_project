@@ -30,8 +30,8 @@
 
       <nav class="navbar">
         <ul class="nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">HOME</a></li>
-          <li class="nav-item"><a class="nav-link" href="blog.html">BLOGS</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{% url 'info:home' %}">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog_list' %}">BLOGS</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
         </ul>
