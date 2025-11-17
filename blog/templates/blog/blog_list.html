@@ -17,7 +17,7 @@
     <div class="container">
       <!-- Breadcrumbs -->
       <nav class="breadcrumbs">
-        <a href="index.html">Ana Səhifə</a>
+        <a href="{% url 'info:home' %}">Ana Səhifə</a>
         <span>/</span>
         <span>Bloq</span>
       </nav>
@@ -25,65 +25,39 @@
       <div class="blog-layout">
         <div class="blog-main">
           <div class="grid grid-3" id="posts-grid">
-            <!-- Post 1 -->
-            <article class="card" data-category="motivasiya" data-tags="həyat,motivasiya">
-              <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="Post 1" class="card-img" />
-              <div class="card-body">
-                <div class="card-meta">
-                  <span class="card-category">Motivasiya</span>
-                  <span class="card-reading-time"><i class="fas fa-clock"></i> 3 dəq</span>
-                </div>
-                <h3 class="card-title">Səhər motivasiyası</h3>
-                <p class="card-text">Gününə enerjili başlamağın ən sadə üsulları haqqında.</p>
-                <div class="card-footer">
-                  <a class="btn btn-dark" href="post-detail.html">Read more</a>
-                  <div class="card-stats">
-                    <span><i class="fas fa-eye"></i> 125</span>
-                    <span><i class="fas fa-heart"></i> 32</span>
-                  </div>
-                </div>
-              </div>
-            </article>
+            {% for article in articles %}
+    <article class="card">
+      <div class="card-img-wrapper">
+        {% if article.image %}
+          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-img" />
+        {% else %}
+          <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="{{ article.title }}" class="card-img" />
+        {% endif %}
+      </div>
 
-            <!-- Post 2 -->
-            <article class="card" data-category="texnologiya" data-tags="texnologiya,həyat">
-              <img src="{% static 'assets/images/blog-post-02.jpg' %}" alt="Post 2" class="card-img" />
-              <div class="card-body">
-                <div class="card-meta">
-                  <span class="card-category">Texnologiya</span>
-                  <span class="card-reading-time"><i class="fas fa-clock"></i> 5 dəq</span>
-                </div>
-                <h3 class="card-title">Texnologiya və həyat</h3>
-                <p class="card-text">Süni intellekt gündəlik həyatımıza necə təsir edir?</p>
-                <div class="card-footer">
-                  <a class="btn btn-dark" href="post-detail.html">Read more</a>
-                  <div class="card-stats">
-                    <span><i class="fas fa-eye"></i> 89</span>
-                    <span><i class="fas fa-heart"></i> 21</span>
-                  </div>
-                </div>
-              </div>
-            </article>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-category">Blog</span>
+          <span class="card-reading-time"><i class="fas fa-clock"></i> 3 dəq</span>
+        </div>
 
-            <!-- Post 3 -->
-            <article class="card" data-category="təbiət" data-tags="təbiət,sükunət">
-              <img src="{% static 'assets/images/blog-post-03.jpg' %}" alt="Post 3" class="card-img" />
-              <div class="card-body">
-                <div class="card-meta">
-                  <span class="card-category">Təbiət</span>
-                  <span class="card-reading-time"><i class="fas fa-clock"></i> 4 dəq</span>
-                </div>
-                <h3 class="card-title">Təbiət və sükunət</h3>
-                <p class="card-text">Sakitliyin içində yeni fikirlər doğulur.</p>
-                <div class="card-footer">
-                  <a class="btn btn-dark" href="post-detail.html">Read more</a>
-                  <div class="card-stats">
-                    <span><i class="fas fa-eye"></i> 156</span>
-                    <span><i class="fas fa-heart"></i> 45</span>
-                  </div>
-                </div>
-              </div>
-            </article>
+        <h3 class="card-title">{{ article.title }}</h3>
+
+        <p class="card-text">
+          {{ article.description|default:"Bu yazı üçün qısa təsvir əlavə edilməyib." }}
+        </p>
+
+        <div class="card-footer">
+          <a class="btn btn-dark" href="#">Read more</a>
+          <div class="card-stats">
+            <span><i class="fas fa-calendar"></i> {{ article.created_at|date:"d.m.Y" }}</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  {% empty %}
+    <p>Hələ heç bir məqalə yoxdur.</p>
+  {% endfor %}
           </div>
 
           <!-- Pagination -->
