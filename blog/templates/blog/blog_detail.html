@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block main %}
+
+  <!-- Banner -->
+  <section class="page-banner" style="background-image: url('{% static 'assets/images/blog_page.jpg' %}');">
+    <img src="{% static 'assets/images/blog_page.jpg' %}" alt="{{ article.title }}" class="page-banner-img" />
+    <div class="page-banner-content">
+      <h1 class="banner-title">{{ article.title }}</h1>
+      <p class="banner-subtitle">
+        {{ article.created_at|date:"d.m.Y" }}
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="section">
+    <div class="container">
+
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs">
+        <a href="{% url 'info:home' %}">Ana Səhifə</a>
+        <span>/</span>
+        <a href="{% url 'blog:blog_list' %}">Bloq</a>
+        <span>/</span>
+        <span>{{ article.title }}</span>
+      </nav>
+
+      <div class="blog-layout">
+        <div class="blog-main">
+
+          <article class="single-post">
+
+            {% if article.image %}
+              <div class="single-post-image">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+              </div>
+            {% endif %}
+
+            <div class="single-post-meta">
+              <span class="single-post-date">
+                <i class="fas fa-calendar"></i>
+                {{ article.created_at|date:"d.m.Y" }}
+              </span>
+            </div>
+
+            <h1 class="single-post-title">
+              {{ article.title }}
+            </h1>
+
+            {% if article.description %}
+              <p class="single-post-description">
+                {{ article.description }}
+              </p>
+            {% endif %}
+
+            <div class="single-post-content">
+              {{ article.content|linebreaks }}
+            </div>
+
+          </article>
+
+        </div>
+
+        <!-- Sidebar (opsional, hələlik sadə saxlayırıq) -->
+        <aside class="sidebar">
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Bloq</h3>
+            <p>Daha çox yazıları <a href="{% url 'blog:blog_list' %}">bloq səhifəsindən</a> görə bilərsən.</p>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+{% endblock main %}

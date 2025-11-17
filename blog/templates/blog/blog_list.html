@@ -48,7 +48,7 @@
         </p>
 
         <div class="card-footer">
-          <a class="btn btn-dark" href="#">Read more</a>
+          <a class="btn btn-dark" href="{{ article.get_absolute_url }}">Read more</a>
           <div class="card-stats">
             <span><i class="fas fa-calendar"></i> {{ article.created_at|date:"d.m.Y" }}</span>
           </div>
