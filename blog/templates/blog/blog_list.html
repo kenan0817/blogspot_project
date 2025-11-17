@@ -1,25 +1,31 @@
 {% extends "layout.html" %}
 {% load static %}
+
 {% block main %}
-  <!-- Hero Banner -->
-  <section class="hero">
-    <div class="hero-media" style="background-image: url('{% static 'assets/images/img1.jpg' %}');">
-      <img src="{% static 'assets/images/img1.jpg' %}" alt="Hero Banner" class="hero-img" />
-      <div class="hero-content">
-        <h1 class="hero-title">Blog saytimiza Xos Gelmisiniz</h1>
-      </div>
+  <!-- Banner -->
+  <section class="page-banner" style="background-image: url('{% static 'assets/images/blog_page.jpg' %}');">
+    <img src="{% static 'assets/images/blog_page.jpg' %}" alt="Blog Banner" class="page-banner-img" />
+    <div class="page-banner-content">
+      <h1 class="banner-title">Blog Yazıları</h1>
+      <p class="banner-subtitle">Oxumağa dəyər hekayələr və təcrübələr</p>
     </div>
   </section>
-  
-  <!-- Recent Posts -->
+
+
+  <!-- Blog Posts -->
   <main class="section">
     <div class="container">
-      <h2 class="section-title">TREND POSTS</h2>
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs">
+        <a href="index.html">Ana Səhifə</a>
+        <span>/</span>
+        <span>Bloq</span>
+      </nav>
 
       <div class="blog-layout">
         <div class="blog-main">
           <div class="grid grid-3" id="posts-grid">
-            <!-- Card 1 -->
+            <!-- Post 1 -->
             <article class="card" data-category="motivasiya" data-tags="həyat,motivasiya">
               <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="Post 1" class="card-img" />
               <div class="card-body">
@@ -27,8 +33,8 @@
                   <span class="card-category">Motivasiya</span>
                   <span class="card-reading-time"><i class="fas fa-clock"></i> 3 dəq</span>
                 </div>
-                <h3 class="card-title">Post Title One</h3>
-                <p class="card-text">Bu, birinci yazı üçün qısa təsvir yeridir. Detallar post səhifəsindədir.</p>
+                <h3 class="card-title">Səhər motivasiyası</h3>
+                <p class="card-text">Gününə enerjili başlamağın ən sadə üsulları haqqında.</p>
                 <div class="card-footer">
                   <a class="btn btn-dark" href="post-detail.html">Read more</a>
                   <div class="card-stats">
@@ -39,7 +45,7 @@
               </div>
             </article>
 
-            <!-- Card 2 -->
+            <!-- Post 2 -->
             <article class="card" data-category="texnologiya" data-tags="texnologiya,həyat">
               <img src="{% static 'assets/images/blog-post-02.jpg' %}" alt="Post 2" class="card-img" />
               <div class="card-body">
@@ -47,8 +53,8 @@
                   <span class="card-category">Texnologiya</span>
                   <span class="card-reading-time"><i class="fas fa-clock"></i> 5 dəq</span>
                 </div>
-                <h3 class="card-title">Post Title Two</h3>
-                <p class="card-text">İkinci post üçün qısa izah. Texnologiya və həyat mövzuları.</p>
+                <h3 class="card-title">Texnologiya və həyat</h3>
+                <p class="card-text">Süni intellekt gündəlik həyatımıza necə təsir edir?</p>
                 <div class="card-footer">
                   <a class="btn btn-dark" href="post-detail.html">Read more</a>
                   <div class="card-stats">
@@ -59,7 +65,7 @@
               </div>
             </article>
 
-            <!-- Card 3 -->
+            <!-- Post 3 -->
             <article class="card" data-category="təbiət" data-tags="təbiət,sükunət">
               <img src="{% static 'assets/images/blog-post-03.jpg' %}" alt="Post 3" class="card-img" />
               <div class="card-body">
@@ -67,8 +73,8 @@
                   <span class="card-category">Təbiət</span>
                   <span class="card-reading-time"><i class="fas fa-clock"></i> 4 dəq</span>
                 </div>
-                <h3 class="card-title">Post Title Three</h3>
-                <p class="card-text">Üçüncü yazı üçün kiçik açıqlama. Daha çoxu post səhifəsində.</p>
+                <h3 class="card-title">Təbiət və sükunət</h3>
+                <p class="card-text">Sakitliyin içində yeni fikirlər doğulur.</p>
                 <div class="card-footer">
                   <a class="btn btn-dark" href="post-detail.html">Read more</a>
                   <div class="card-stats">
@@ -147,7 +153,12 @@
     </div>
   </main>
 
+
 {% endblock main %}
+
+
+
+
 
 
 
