@@ -7,7 +7,7 @@ class Article(models.Model):
     description=models.TextField(null=True,blank=True)
     content=models.TextField()
     image=models.ImageField(upload_to="articles/",null=True,blank=True)
-    cretaed_at=models.DateTimeField(auto_now_add=True)
+    created_at=models.DateTimeField(auto_now_add=True)
     uptadet_at=models.DateTimeField(auto_now=True)
     is_published=models.BooleanField(default=True)
     
