@@ -7,6 +7,7 @@ class Article(models.Model):
     description=models.TextField(null=True,blank=True)
     content=models.TextField()
     image=models.ImageField(upload_to="articles/",null=True,blank=True)
+    category=models.ForeignKey('Category',null=True,blank=True,on_delete=models.SET_NULL,related_name='articles')
     tags=models.ManyToManyField("Tag",blank=True,related_name="articles")
     created_at=models.DateTimeField(auto_now_add=True)
     uptadet_at=models.DateTimeField(auto_now=True)
@@ -25,4 +26,18 @@ class Tag(models.Model):
     
     def __str__(self):
         return self.name
-    
+
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(unique=True)
+
+    class Meta:
+        verbose_name = "Kateqoriya"
+        verbose_name_plural = "Kateqoriyalar"
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('blog:category_filter', kwargs={'cat_slug': self.slug})

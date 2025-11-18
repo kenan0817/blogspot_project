@@ -72,15 +72,21 @@
         <!-- Sidebar -->
         <aside class="sidebar">
           <!-- Categories -->
-          <div class="sidebar-widget">
-            <h3 class="widget-title">Kateqoriyalar</h3>
-            <ul class="category-list">
-              <li><a href="#" data-filter="all">Hamısı <span>(12)</span></a></li>
-              <li><a href="#" data-filter="motivasiya">Motivasiya <span>(4)</span></a></li>
-              <li><a href="#" data-filter="texnologiya">Texnologiya <span>(5)</span></a></li>
-              <li><a href="#" data-filter="təbiət">Təbiət <span>(3)</span></a></li>
-            </ul>
-          </div>
+<div class="sidebar-widget">
+  <h4 class="widget-title">Kateqoriyalar</h4>
+  <ul class="list-unstyled category-list">
+    {% for cat in categories %}
+      <li>
+        <a href="{% url 'blog:category_filter' cat.slug %}"
+           class="category-link {% if category and category.slug == cat.slug %}active{% endif %}">
+          {{ cat.name }}
+        </a>
+      </li>
+    {% empty %}
+      <li class="text-muted">Kateqoriya yoxdur</li>
+    {% endfor %}
+  </ul>
+</div>
 
           <!-- Popular Posts -->
           <div class="sidebar-widget">
