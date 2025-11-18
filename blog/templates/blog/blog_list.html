@@ -110,18 +110,20 @@
             </div>
           </div>
 
-          <!-- Tags -->
-          <div class="sidebar-widget">
-            <h3 class="widget-title">Teqlər</h3>
-            <div class="tag-cloud">
-              <a href="#" class="tag">Həyat</a>
-              <a href="#" class="tag">Motivasiya</a>
-              <a href="#" class="tag">Texnologiya</a>
-              <a href="#" class="tag">Təbiət</a>
-              <a href="#" class="tag">Sükunət</a>
-              <a href="#" class="tag">Uğur</a>
-            </div>
-          </div>
+
+<!-- Tags -->
+<div class="sidebar-widget">
+  <h3 class="widget-title">Teqlər</h3>
+  <div class="tag-cloud">
+    {% for tag in tags %}
+      <a href="{% url 'blog:tag_filter' tag.slug %}" class="tag">
+        {{ tag.name }}
+      </a>
+    {% empty %}
+      <span class="text-muted">Teq yoxdur</span>
+    {% endfor %}
+  </div>
+</div>
         </aside>
       </div>
     </div>

@@ -1,78 +1,82 @@
 {% extends "layout.html" %}
 {% load static %}
 
+{% block title %}{{ article.title }} | BlogSpot{% endblock %}
+
 {% block main %}
 
-  <!-- Banner -->
-  <section class="page-banner" style="background-image: url('{% static 'assets/images/blog_page.jpg' %}');">
-    <img src="{% static 'assets/images/blog_page.jpg' %}" alt="{{ article.title }}" class="page-banner-img" />
-    <div class="page-banner-content">
-      <h1 class="banner-title">{{ article.title }}</h1>
-      <p class="banner-subtitle">
-        {{ article.created_at|date:"d.m.Y" }}
+<main class="container my-5" style="margin-top:100px;">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+
+      <!-- BAŞLIQ + META MƏLUMATLAR -->
+      <h1 class="fw-bold mb-3">
+        {{ article.title }}
+      </h1>
+
+      {% if article.subtitle %}
+        <h2 class="h5 text-muted mb-3">
+          {{ article.subtitle }}
+        </h2>
+      {% endif %}
+
+      <p class="text-muted mb-4">
+        Müəllif:
+        {% if article.author %}
+          {{ article.author }}
+        {% else %}
+          Naməlum
+        {% endif %}
+        · Tarix: {{ article.created_at|date:"d.m.Y" }}
+        {% if article.updated_at %}
+          · Yeniləndi: {{ article.updated_at|date:"d.m.Y H:i" }}
+        {% endif %}
+        · Baxış: {{ article.view_count }}
       </p>
-    </div>
-  </section>
 
-  <!-- Main Content -->
-  <main class="section">
-    <div class="container">
-
-      <!-- Breadcrumbs -->
-      <nav class="breadcrumbs">
-        <a href="{% url 'info:home' %}">Ana Səhifə</a>
-        <span>/</span>
-        <a href="{% url 'blog:blog_list' %}">Bloq</a>
-        <span>/</span>
-        <span>{{ article.title }}</span>
-      </nav>
-
-      <div class="blog-layout">
-        <div class="blog-main">
-
-          <article class="single-post">
-
-            {% if article.image %}
-              <div class="single-post-image">
-                <img src="{{ article.image.url }}" alt="{{ article.title }}">
-              </div>
-            {% endif %}
-
-            <div class="single-post-meta">
-              <span class="single-post-date">
-                <i class="fas fa-calendar"></i>
-                {{ article.created_at|date:"d.m.Y" }}
-              </span>
-            </div>
-
-            <h1 class="single-post-title">
-              {{ article.title }}
-            </h1>
-
-            {% if article.description %}
-              <p class="single-post-description">
-                {{ article.description }}
-              </p>
-            {% endif %}
-
-            <div class="single-post-content">
-              {{ article.content|linebreaks }}
-            </div>
-
-          </article>
-
+      <!-- ŞƏKİL -->
+      {% if article.image %}
+        <div class="mb-4 d-flex justify-content-center">
+          <img
+            src="{{ article.image.url }}"
+            alt="{{ article.title }}"
+            class="img-fluid rounded"
+            style="max-height: 380px; width: 100%; object-fit: cover;"
+          >
         </div>
+      {% endif %}
 
-        <!-- Sidebar (opsional, hələlik sadə saxlayırıq) -->
-        <aside class="sidebar">
-          <div class="sidebar-widget">
-            <h3 class="widget-title">Bloq</h3>
-            <p>Daha çox yazıları <a href="{% url 'blog:blog_list' %}">bloq səhifəsindən</a> görə bilərsən.</p>
-          </div>
-        </aside>
+      <!-- MƏQALƏ MƏTNİ -->
+      <article class="mb-5">
+        {{ article.content|safe }}
+      </article>
+
+      <!-- TEQLƏR -->
+      {% if article.tags.all %}
+        <div class="mb-4">
+          <strong>Teqlər:</strong>
+          {% for tag in article.tags.all %}
+            <a href="#" class="badge bg-secondary text-decoration-none me-1">
+              {{ tag.name }}
+            </a>
+          {% empty %}
+            <span class="text-muted">Teq yoxdur</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- GERİ QAYIT DÜYMƏSİ -->
+      <div class="mt-5">
+        <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-primary">
+          ← Bütün yazılara qayıt
+        </a>
       </div>
 
     </div>
-  </main>
+  </div>
+</main>
 
-{% endblock main %}
+{% endblock %}
+
+
+

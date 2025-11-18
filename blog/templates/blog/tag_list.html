@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Tag: {{ tag.name }} | BlogSpot{% endblock %}
+
+{% block main %}
+<main class="container" style="margin-top:120px;">
+  <h2 class="mb-4">Teq: <span class="text-primary">{{ tag.name }}</span></h2>
+
+  {% if articles %}
+    <div class="row g-4">
+      {% for article in articles %}
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm">
+            {% if article.image %}
+              <img src="{{ article.image.url }}" class="card-img-top" style="max-height:200px; object-fit:cover;">
+            {% endif %}
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ article.title }}</h5>
+              <p class="card-text text-muted small mb-3">
+                {{ article.created_at|date:"d.m.Y" }} · Baxış: {{ article.view_count }}
+              </p>
+              <div class="mt-auto">
+                <a href="{% url 'blog:article_detail' article.slug %}" class="btn btn-sm btn-primary">Oxu davamı →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">Bu teqə aid hələ məqalə yoxdur.</p>
+  {% endif %}
+</main>
+{% endblock %}
