@@ -2,7 +2,7 @@
   <!-- Header -->
   <header class="header-area">
     <div class="container header-inner">
-      <a class="brand" href="index.html">BLOG<span class="brand-accent">SPOT</span></a>
+      <a class="brand" href="{% url 'info:home' %}">BLOG<span class="brand-accent">SPOT</span></a>
 
       <button type="button" class="nav-toggle" data-nav-toggle aria-label="Menyunu aç/bağla">
         <i class="fas fa-bars"></i>
@@ -32,7 +32,7 @@
         <ul class="nav">
           <li class="nav-item"><a class="nav-link active" href="{% url 'info:home' %}">HOME</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog_list' %}">BLOGS</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'info:about' %}">ABOUT</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'info:contact' %}">CONTACT</a></li>
         </ul>
       </nav>

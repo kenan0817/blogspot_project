@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block main %}
+
+  <!-- About Banner -->
+  <section class="page-banner" style="background-image: url('{% static 'assets/images/about_page.jpg' %}');">
+    <img src="{% static 'assets/images/about_page.jpg' %}" alt="About Banner" class="page-banner-img" />
+    <div class="page-banner-content">
+      <h1 class="banner-title">Haqqımda</h1>
+      <p class="banner-subtitle">Mənim hekayəm və təcrübələrim</p>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <main class="section">
+    <div class="container narrow">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs">
+        <a href="{% url 'info:home' %}">Ana Səhifə</a>
+        <span>/</span>
+        <span>Haqqımda</span>
+      </nav>
+
+      <div class="about-content">
+        <div class="about-image">
+          <img src="{% static 'assets/images/about_me.jpg' %}" alt="Kenan Butdayev" />
+        </div>
+
+        <div class="about-text">
+          <h2>Kenan Butdayev</h2>
+          <p class="about-role">Backend Developer, Motivasiya və Texnologiya Yazıçısı</p>
+
+          <p>
+            Salam! Mən Kenan Butdayevəm və bu bloq platformasının yaradıcısıyam. 
+            Backend development sahəsində çalışıram və texnologiya, motivasiya, 
+            həyat təcrübələri haqqında yazıram.
+          </p>
+
+          <p>
+            Bu blogda texnologiya tendensiyaları, proqramlaşdırma, şəxsi 
+            inkişaf, motivasiya və həyat dərsləri haqqında məqalələr paylaşıram. 
+            Hər yazıda oxucularla öz təcrübələrimi, fikirlərimi və düşüncələrimi 
+            bölüşürəm.
+          </p>
+
+          <h3>Məqsədim</h3>
+          <p>
+            Məqsədim bilik və təcrübə paylaşmaq, oxucuları məlumatlandırmaq və 
+            ilhamlandırmaqdır. Texnologiya və həyat arasında körpü yaratmağa 
+            çalışıram.
+          </p>
+
+          <div class="about-skills">
+            <h3>Bacarıqlar</h3>
+            <ul class="skills-list">
+              <li><i class="fas fa-check"></i> Backend Development</li>
+              <li><i class="fas fa-check"></i> Web Development</li>
+              <li><i class="fas fa-check"></i> Database Management</li>
+              <li><i class="fas fa-check"></i> API Development</li>
+            </ul>
+          </div>
+
+          <div class="about-contact">
+            <h3>Əlaqə</h3>
+            <p>Suallarınız və təklifləriniz üçün mənimlə əlaqə saxlayın:</p>
+            <ul class="contact-list">
+              <li><i class="fas fa-envelope"></i> info@blogspot.az</li>
+              <li><i class="fas fa-phone"></i> +994 50 000 00 00</li>
+              <li><i class="fas fa-map-marker-alt"></i> Bakı, Azərbaycan</li>
+            </ul>
+            <a href="contact.html" class="btn btn-dark">Mənimlə əlaqə</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+{% endblock main %}
+
+
+
+
+
+

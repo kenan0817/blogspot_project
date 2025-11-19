@@ -28,12 +28,17 @@
         Aşağıdakı form vasitəsilə bizə mesaj göndərə bilərsən. Cavab ən qısa zamanda veriləcək.
       </p>
 
-      {# Uğurlu göndərilmə mesajı #}
-      {% if success %}
-        <div class="alert alert-success" style="margin-bottom: 20px;">
-          Mesajınız uğurla göndərildi.
-        </div>
-      {% endif %}
+{% if success %}
+<div class="form-success" style="
+    padding: 15px;
+    background: #d4edda;
+    border: 1px solid #badbcc;
+    color: #155724;
+    border-radius: 5px;
+    margin-bottom: 20px;">
+  Mesajınız uğurla göndərildi!
+</div>
+{% endif %}
 
       <form class="contact-form" method="POST" novalidate>
         {% csrf_token %}

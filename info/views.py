@@ -28,3 +28,6 @@ def contact_view(request):
         'success': success,
     }
     return render(request, 'info/contact.html', context)
+
+def about_view(request):
+    return render(request,'info/about.html')

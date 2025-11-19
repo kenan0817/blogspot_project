@@ -3,5 +3,6 @@ from .import views
 app_name='info'
 urlpatterns = [
     path('',views.home,name='home'),
-    path('contact/',views.contact_view,name='contact')
+    path('contact/',views.contact_view,name='contact'),
+    path('about/',views.about_view,name='about'),
 ]
