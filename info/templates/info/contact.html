@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% load static %}
+
+
+{% block main %}
+
+  <!-- Contact Banner (yuxarı şəkil hissə) -->
+  <section class="page-banner" style="background-image: url('{% static "assets/images/contact_page.jpg" %}');">
+    <img src="{% static 'assets/images/contact_page.jpg' %}" alt="Contact Banner" class="page-banner-img" />
+    <div class="page-banner-content">
+      <h1 class="banner-title">Bizimlə əlaqə saxla</h1>
+      <p class="banner-subtitle">Sualın, təklifin və ya ideyan varmı? Yaz, eşidək!</p>
+    </div>
+  </section>
+
+  <!-- Contact Form + məlumat hissəsi -->
+  <main class="section">
+    <div class="container narrow">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs">
+        <a href="{% url 'info:home' %}">Ana Səhifə</a>
+        <span>/</span>
+        <span>Əlaqə</span>
+      </nav>
+
+      <h2 class="section-title">Əlaqə formu</h2>
+      <p class="section-text">
+        Aşağıdakı form vasitəsilə bizə mesaj göndərə bilərsən. Cavab ən qısa zamanda veriləcək.
+      </p>
+
+      {# Uğurlu göndərilmə mesajı #}
+      {% if success %}
+        <div class="alert alert-success" style="margin-bottom: 20px;">
+          Mesajınız uğurla göndərildi.
+        </div>
+      {% endif %}
+
+      <form class="contact-form" method="POST" novalidate>
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="{{ form.name.id_for_label }}">Ad</label>
+          {{ form.name }}
+          {% if form.name.errors %}
+            <div class="text-danger small">
+              {{ form.name.errors.0 }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          {{ form.email }}
+          {% if form.email.errors %}
+            <div class="text-danger small">
+              {{ form.email.errors.0 }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.message.id_for_label }}">Mesaj</label>
+          {{ form.message }}
+          {% if form.message.errors %}
+            <div class="text-danger small">
+              {{ form.message.errors.0 }}
+            </div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-dark">Göndər</button>
+      </form>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3 class="section-subtitle">Əlaqə məlumatları</h3>
+        <ul class="info-list">
+          <li><i class="fas fa-map-marker-alt"></i> Bakı, Azərbaycan</li>
+          <li><i class="fas fa-envelope"></i> info@blogspot.az</li>
+          <li><i class="fas fa-phone"></i> +994 50 000 00 00</li>
+        </ul>
+      </div>
+
+      <!-- Map Placeholder -->
+      <div class="map-container">
+        <img src="{% static 'assets/images/education.jpg' %}" alt="Map" class="map-img" />
+      </div>
+    </div>
+  </main>
+
+
+
+
+{% endblock main %}
+
+
+
+
+
+
+
+
+
+
+

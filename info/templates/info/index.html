@@ -94,12 +94,14 @@
           <!-- Categories -->
           <div class="sidebar-widget">
             <h3 class="widget-title">Kateqoriyalar</h3>
-            <ul class="category-list">
-              <li><a href="#" data-filter="all">Hamısı <span>(12)</span></a></li>
-              <li><a href="#" data-filter="motivasiya">Motivasiya <span>(4)</span></a></li>
-              <li><a href="#" data-filter="texnologiya">Texnologiya <span>(5)</span></a></li>
-              <li><a href="#" data-filter="təbiət">Təbiət <span>(3)</span></a></li>
-            </ul>
+<ul class="category-list">
+  <li><a href="{% url 'blog:blog_list' %}">Hamısı</a></li>
+  {% for cat in categories %}
+    <li><a href="{% url 'blog:category_filter' cat.slug %}">{{ cat.name }}</a></li>
+  {% empty %}
+    <li class="text-muted">Kateqoriya yoxdur</li>
+  {% endfor %}
+</ul>
           </div>
 
           <!-- Popular Posts -->
@@ -133,14 +135,13 @@
           <!-- Tags -->
           <div class="sidebar-widget">
             <h3 class="widget-title">Teqlər</h3>
-            <div class="tag-cloud">
-              <a href="#" class="tag">Həyat</a>
-              <a href="#" class="tag">Motivasiya</a>
-              <a href="#" class="tag">Texnologiya</a>
-              <a href="#" class="tag">Təbiət</a>
-              <a href="#" class="tag">Sükunət</a>
-              <a href="#" class="tag">Uğur</a>
-            </div>
+<div class="tag-cloud">
+  {% for tag in tags %}
+    <a href="{% url 'blog:tag_filter' tag.slug %}" class="tag">{{ tag.name }}</a>
+  {% empty %}
+    <span class="text-muted">Teq yoxdur</span>
+  {% endfor %}
+</div>
           </div>
         </aside>
       </div>
