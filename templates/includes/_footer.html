@@ -16,10 +16,10 @@
         <div class="footer-column">
           <h4>Səhifələr</h4>
           <ul class="footer-links">
-            <li><a href="index.html">Ana Səhifə</a></li>
-            <li><a href="blog.html">Bloq</a></li>
-            <li><a href="about.html">Haqqımda</a></li>
-            <li><a href="contact.html">Əlaqə</a></li>
+            <li><a href="{% url 'info:home' %}">Ana Səhifə</a></li>
+            <li><a href="{% url 'blog:blog_list' %}">Bloq</a></li>
+            <li><a href="{% url 'info:about' %}">Haqqımda</a></li>
+            <li><a href="{% url 'info:contact' %}">Əlaqə</a></li>
           </ul>
         </div>
         <div class="footer-column">
