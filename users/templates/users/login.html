@@ -2,17 +2,52 @@
 {% load static %}
 {% block main %}
 
-<form method="POST">
-    {% csrf_token %}
+<section class="hero">
+  <div class="hero-media" style="background-image: url('{% static 'assets/images/login (2).jpg' %}');">
+    <div class="hero-content">
+      <h1 class="hero-title">Login səhifəsinə xoş gəlmisiniz</h1>
+    </div>
+  </div>
+</section>
 
-    <label for="username">İstifadəçi adı</label><br>
-    <input type="text" name="username" id="username"><br><br>
+<section class="section">
+  <div class="container narrow">
 
-    <label for="password">Şifrə</label><br>
-    <input type="password" name="password" id="password"><br><br>
+    <h2 class="section-title">Daxil ol</h2>
+    <p class="section-text">Hesabiniza daxil olun.</p>
 
-    <button type="submit">Daxil ol</button>
-</form>
+    <!-- Mesajlar -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="POST" class="contact-form" novalidate>
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">İstifadəçi Email-i</label>
+        {{ form.username }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">Şifrə</label>
+        {{ form.password }}
+      </div>
+
+      <button type="submit" class="btn btn-dark">Daxil ol</button>
+    </form>
+
+    <p style="margin-top: 20px;">
+      Hesabin yoxdur?
+      <a href="{% url 'users:register' %}">Buradan qeydiyyatdan keç</a>.
+    </p>
+
+  </div>
+</section>
 
 {% endblock main %}
 

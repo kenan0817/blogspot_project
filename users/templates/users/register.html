@@ -3,21 +3,85 @@
 
 {% block main %}
 
-<h1>Qeydiyyat</h1>
+<!-- Üst Banner -->
+<section class="hero">
+  <div class="hero-media" style="background-image: url('{% static 'assets/images/register.jpg' %}');">
+    <div class="hero-content">
+      <h1 class="hero-title">Qeydiyyat səhifəsinə xoş gəlmisiniz</h1>
+    </div>
+  </div>
+</section>
 
-<form method="POST">
-    {% csrf_token %}
+<section class="section">
+  <div class="container narrow">
 
-    <label for="username">İstifadəçi adı</label><br>
-    <input type="text" name="username" id="username"><br><br>
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <a href="{% url 'info:home' %}">Ana Səhifə</a>
+      <span>/</span>
+      <span>Qeydiyyat</span>
+    </nav>
 
-    <label for="email">Email</label><br>
-    <input type="email" name="email" id="email"><br><br>
+    <h2 class="section-title">Hesab yaradın</h2>
+    <p class="section-text">Zəhmət olmasa aşağıdakı formu doldurun.</p>
 
-    <label for="password">Şifrə</label><br>
-    <input type="password" name="password" id="password"><br><br>
+    <!-- Mesajlar (error və ya success) -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
 
-    <button type="submit">Qeydiyyatdan keç</button>
-</form>
+    <!-- Qeydiyyat formu -->
+    <form method="POST">
+      {% csrf_token %}
+
+      <!-- Username -->
+      <div class="form-group">
+        <label>İstifadəçi adı</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+          <p class="text-danger small">{{ form.username.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label>Email</label>
+        {{ form.email }}
+        {% if form.email.errors %}
+          <p class="text-danger small">{{ form.email.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label>Şifrə</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+          <p class="text-danger small">{{ form.password.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Password Confirm -->
+      <div class="form-group">
+        <label>Şifrə təsdiqi</label>
+        {{ form.password_confirm }}
+        {% if form.password_confirm.errors %}
+          <p class="text-danger small">{{ form.password_confirm.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-dark">Qeydiyyatdan keç</button>
+    </form>
+
+    <p style="margin-top: 20px;">
+      Artıq hesabınız var? <a href="{% url 'users:login' %}">Daxil olun</a>.
+    </p>
+
+  </div>
+</section>
 
 {% endblock main %}
