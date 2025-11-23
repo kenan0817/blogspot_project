@@ -36,7 +36,8 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'info:about' %}">ABOUT</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'info:contact' %}">CONTACT</a></li>
           {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="#" style="color: #d93122e8; font-weight: 500; letter-spacing: 1.5px; font-style: italic; font-family: "Georgia", serif;">Salam, {{ user.username }}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'blog:article_create' %}"style="color:#e84d3f; font-weight:600;">Yeni Məqalə</a></li>
+          {% comment %} <li class="nav-item"><a class="nav-link" href="#" style="color: #d93122e8; font-weight: 500; letter-spacing: 1.5px; font-style: italic; font-family: "Georgia", serif;">Salam, {{ user.username }}</a></li> {% endcomment %}
           <li class="nav-item"><a class="nav-link" href="{% url 'users:logout' %}">Logout</a></li>
           {% else %}
           <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Login</a></li>

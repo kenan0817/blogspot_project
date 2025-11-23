@@ -1,6 +1,9 @@
 from django.shortcuts import render,get_object_or_404
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Article,Tag,Category
+from django.contrib.auth.decorators import login_required
+from .forms import ArticleForm
+from django.contrib import messages
 # Create your views here.
 def blog_list(request):
     
@@ -43,3 +46,23 @@ def category_filter(request, cat_slug):
         'tags': Tag.objects.all(),
         'categories': Category.objects.all(),
     })
+    
+
+@login_required
+def article_create_view(request):
+    form = ArticleForm(request.POST or None, request.FILES or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.author = request.user
+            article.save()
+
+            messages.success(request, "Məqalə uğurla yaradıldı.")
+            return redirect("blog:blog_list")
+
+
+        return render(request, "blog/article_create.html", {"form": form})
+
+
+    return render(request, "blog/article_create.html", {"form": form})

@@ -54,13 +54,13 @@ def login_view(request):
     
     if request.method=="POST":
         if form.is_valid():
-            email=form.cleaned_data.get('email')
+            username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password')
             
-            user=authenticate(request,email=email,password=password)
+            user=authenticate(request,username=username,password=password)
             
             if user is None:
-                messages.error(request,"Istifadeci email-i ve ya sifre yanlisdir!")
+                messages.error(request,"Istifadeci adi ve ya sifre yanlisdir!")
                 return render(request,'users/login.html',{'form':form})
             
             login(request,user)

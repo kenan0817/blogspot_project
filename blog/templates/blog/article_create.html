@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block main %}
+
+<!-- Page Banner -->
+<section class="page-banner" style="background-image: url('{% static "assets/images/article_create.jpg" %}');">
+  <img src="{% static "assets/images/article_create.jpg" %}" alt="New Article" class="page-banner-img" />
+  <div class="page-banner-content">
+    <h1 class="banner-title">Yeni Məqalə Yarat</h1>
+    <p class="banner-subtitle">Fikir və biliklərini dünya ilə paylaş</p>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="section">
+  <div class="container narrow">
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <a href="{% url 'info:home' %}">Ana Səhifə</a>
+      <span>/</span>
+      <a href="{% url 'blog:blog_list' %}">Bloqlar</a>
+      <span>/</span>
+      <span>Yeni Məqalə</span>
+    </nav>
+
+    <h2 class="section-title">Məqalə Yarat</h2>
+    <p class="section-text">Yeni bir məqalə yazmaq üçün aşağıdakı formu doldurun.</p>
+
+    <!-- Messages -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" style="margin-bottom:20px;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Article Form -->
+    <form method="POST" enctype="multipart/form-data" class="contact-form" novalidate>
+      {% csrf_token %}
+
+      <!-- Title -->
+      <div class="form-group">
+        <label for="{{ form.title.id_for_label }}">Başlıq</label>
+        {{ form.title }}
+        {% if form.title.errors %}
+          <div class="text-danger small">{{ form.title.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Slug -->
+      <div class="form-group">
+        <label for="{{ form.slug.id_for_label }}">Slug</label>
+        {{ form.slug }}
+        {% if form.slug.errors %}
+          <div class="text-danger small">{{ form.slug.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Content -->
+      <div class="form-group">
+        <label for="{{ form.content.id_for_label }}">Mətn</label>
+        {{ form.content }}
+        {% if form.content.errors %}
+          <div class="text-danger small">{{ form.content.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Image -->
+      <div class="form-group">
+        <label for="{{ form.image.id_for_label }}">Şəkil</label>
+        {{ form.image }}
+        {% if form.image.errors %}
+          <div class="text-danger small">{{ form.image.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-dark">Yarat</button>
+    </form>
+
+  </div>
+</section>
+
+{% endblock main %}
