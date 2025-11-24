@@ -9,27 +9,22 @@
   <div class="row justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
 
-      <!-- BAŞLIQ + META MƏLUMATLAR -->
-      <h1 class="fw-bold mb-3">
-        {{ article.title }}
-      </h1>
+      <!-- BAŞLIQ -->
+      <h1 class="fw-bold mb-3">{{ article.title }}</h1>
 
-      {% if article.subtitle %}
-        <h2 class="h5 text-muted mb-3">
-          {{ article.subtitle }}
-        </h2>
+      <!-- DESCRIPTION (QISA MƏTN) -->
+      {% if article.description %}
+        <p class="text-muted mb-4" style="font-size:18px; line-height:1.6;">
+          {{ article.description }}
+        </p>
       {% endif %}
 
+      <!-- META MƏLUMATLAR -->
       <p class="text-muted mb-4">
-        Müəllif:
-        {% if article.author %}
-          {{ article.author }}
-        {% else %}
-          Naməlum
-        {% endif %}
+        Müəllif: {{ article.author }}
         · Tarix: {{ article.created_at|date:"d.m.Y" }}
         {% if article.updated_at %}
-          · Yeniləndi: {{ article.updated_at|date:"d.m.Y H:i" }}
+           · Yeniləndi: {{ article.updated_at|date:"d.m.Y H:i" }}
         {% endif %}
         · Baxış: {{ article.view_count }}
       </p>
@@ -37,46 +32,53 @@
       <!-- ŞƏKİL -->
       {% if article.image %}
         <div class="mb-4 d-flex justify-content-center">
-          <img
-            src="{{ article.image.url }}"
-            alt="{{ article.title }}"
-            class="img-fluid rounded"
-            style="max-height: 380px; width: 100%; object-fit: cover;"
-          >
+          <img src="{{ article.image.url }}"
+               alt="{{ article.title }}"
+               class="img-fluid rounded"
+               style="max-height:400px; width:100%; object-fit:cover;">
         </div>
       {% endif %}
 
-      <!-- MƏQALƏ MƏTNİ -->
-      <article class="mb-5">
+      <!-- CONTENT (UZUN MƏTN) -->
+      <article class="mb-5" style="line-height:1.8; font-size:17px;">
         {{ article.content|safe }}
       </article>
 
-      <!-- TEQLƏR -->
-      {% if article.tags.all %}
-        <div class="mb-4">
-          <strong>Teqlər:</strong>
-          {% for tag in article.tags.all %}
-            <a href="#" class="badge bg-secondary text-decoration-none me-1">
-              {{ tag.name }}
-            </a>
-          {% empty %}
-            <span class="text-muted">Teq yoxdur</span>
-          {% endfor %}
+      <!-- EDIT & DELETE -->
+      {% if request.user == article.author %}
+        <div class="d-flex gap-2 mb-4">
+
+          <a href="{% url 'blog:article_edit' article.slug %}"
+             onmouseover="this.style.background='#7482d6cf'"
+             onmouseout="this.style.background='#465dceff'"
+             style="background:#465dceff; padding:10px 18px; color:white;
+                    border:none; border-radius:10px; display:inline-block;">
+            Məqaləni redaktə et
+          </a>
+
+          <a href="{% url 'blog:article_delete' article.slug %}"
+             onmouseover="this.style.background='#ca3325c5'"
+             onmouseout="this.style.background='#d23022e6'"
+             style="background:#e94c3e; padding:10px 18px; color:white;
+                    border:none; border-radius:10px; display:inline-block;">
+            Sil
+          </a>
+
         </div>
       {% endif %}
 
-      <!-- GERİ QAYIT DÜYMƏSİ -->
-      <div class="mt-5">
-        <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-primary">
-          ← Bütün yazılara qayıt
-        </a>
-      </div>
+      <!-- BÜTÜN YAZILARA QAYIT -->
+      <a href="{% url 'blog:blog_list' %}"
+         style="padding:8px 15px; margin-top:25px; background:#324bc6ff;
+                color:white; border-radius:8px; text-decoration:none;
+                display:inline-block;"
+         onmouseover="this.style.background='#6976d9df'"
+         onmouseout="this.style.background='#324bc6ff'">
+         ← Bütün yazilara qayit
+      </a>
 
     </div>
   </div>
 </main>
 
 {% endblock %}
-
-
-

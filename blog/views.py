@@ -66,3 +66,29 @@ def article_create_view(request):
 
 
     return render(request, "blog/article_create.html", {"form": form})
+
+
+@login_required
+def article_update_view(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+
+    form = ArticleForm(request.POST or None, request.FILES or None, instance=article)
+
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect('blog:article_detail', slug=article.slug)
+
+    return render(request, 'blog/article_edit.html', {"form": form, "article": article})
+
+
+def article_delete_view(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+
+    if request.user != article.author:
+        messages.error(request, "Bu məqaləni silmək üçün icazəniz yoxdur!")
+        return redirect(article.get_absolute_url())
+
+    article.delete()
+    messages.success(request, "Məqalə uğurla silindi.")
+    return redirect('blog:blog_list')

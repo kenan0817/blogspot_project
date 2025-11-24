@@ -5,7 +5,7 @@
 
 <!-- Page Banner -->
 <section class="page-banner" style="background-image: url('{% static "assets/images/article_create.jpg" %}');">
-  <img src="{% static "assets/images/article_create.jpg" %}" alt="New Article" class="page-banner-img" />
+  <img src="{% static "assets/images/article_create.jpg" %}" alt="Yeni Məqalə" class="page-banner-img" />
   <div class="page-banner-content">
     <h1 class="banner-title">Yeni Məqalə Yarat</h1>
     <p class="banner-subtitle">Fikir və biliklərini dünya ilə paylaş</p>
@@ -50,12 +50,12 @@
         {% endif %}
       </div>
 
-      <!-- Slug -->
+      <!-- Description -->
       <div class="form-group">
-        <label for="{{ form.slug.id_for_label }}">Slug</label>
-        {{ form.slug }}
-        {% if form.slug.errors %}
-          <div class="text-danger small">{{ form.slug.errors.0 }}</div>
+        <label for="{{ form.description.id_for_label }}">Açıqlama</label>
+        {{ form.description }}
+        {% if form.description.errors %}
+          <div class="text-danger small">{{ form.description.errors.0 }}</div>
         {% endif %}
       </div>
 
@@ -74,6 +74,24 @@
         {{ form.image }}
         {% if form.image.errors %}
           <div class="text-danger small">{{ form.image.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Category -->
+      <div class="form-group">
+        <label for="{{ form.category.id_for_label }}">Kateqoriya</label>
+        {{ form.category }}
+        {% if form.category.errors %}
+          <div class="text-danger small">{{ form.category.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Tags -->
+      <div class="form-group">
+        <label for="{{ form.tags.id_for_label }}">Taglar</label>
+        {{ form.tags }}
+        {% if form.tags.errors %}
+          <div class="text-danger small">{{ form.tags.errors.0 }}</div>
         {% endif %}
       </div>
 
