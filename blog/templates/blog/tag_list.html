@@ -14,7 +14,7 @@
 
   <div class="mt-4">
     {% if articles %}
-      {% for article in articles %}
+      {% for article in page_obj %}
         <article class="mb-4 card p-3 shadow-sm">
           {% if article.image %}
             <div style="float:left; margin-right:18px; width:260px;">

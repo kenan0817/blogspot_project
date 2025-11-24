@@ -1,146 +1,138 @@
+<!-- blog/tag_list.html -->
 {% extends "layout.html" %}
 {% load static %}
 
 {% block main %}
-  <!-- Banner -->
-  <section class="page-banner" style="background-image: url('{% static 'assets/images/blog_page.jpg' %}');">
-    <img src="{% static 'assets/images/blog_page.jpg' %}" alt="Blog Banner" class="page-banner-img" />
+<section class="page-banner" style="background-image: url('{% static 'assets/images/blog_page.jpg' %}');">
     <div class="page-banner-content">
-      <h1 class="banner-title">Blog Yazıları</h1>
-      <p class="banner-subtitle">Oxumağa dəyər hekayələr və təcrübələr</p>
+        <h1 class="banner-title">
+            {% if tag %}
+                "{{ tag.name }}" teqli yazılar
+            {% elif category %}
+                "{{ category.name }}" kateqoriyalı yazılar
+            {% endif %}
+        </h1>
     </div>
-  </section>
+</section>
 
+<main class="section">
+<div class="container">
 
-  <!-- Blog Posts -->
-  <main class="section">
-    <div class="container">
-      <!-- Breadcrumbs -->
-      <nav class="breadcrumbs">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumbs">
         <a href="{% url 'info:home' %}">Ana Səhifə</a>
         <span>/</span>
-        <span>Bloq</span>
-      </nav>
+        <a href="{% url 'blog:blog_list' %}">Bloq</a>
+        <span>/</span>
+        <span>
+            {% if tag %}
+                {{ tag.name }}
+            {% elif category %}
+                {{ category.name }}
+            {% endif %}
+        </span>
+    </nav>
 
-      <div class="blog-layout">
+    <div class="blog-layout">
+
+        <!-- MAIN POSTS -->
         <div class="blog-main">
-          <div class="grid grid-3" id="posts-grid">
-            {% for article in articles %}
-    <article class="card">
-      <div class="card-img-wrapper">
-        {% if article.image %}
-          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-img" />
-        {% else %}
-          <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="{{ article.title }}" class="card-img" />
-        {% endif %}
-      </div>
+            <div class="grid grid-3" id="posts-grid">
 
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-category">Blog</span>
-          <span class="card-reading-time"><i class="fas fa-clock"></i> 3 dəq</span>
-        </div>
+                {% for article in page_obj %}
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        {% if article.image %}
+                            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-img" />
+                        {% else %}
+                            <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="{{ article.title }}" class="card-img" />
+                        {% endif %}
+                    </div>
 
-        <h3 class="card-title">{{ article.title }}</h3>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-category">Blog</span>
+                            <span class="card-reading-time"><i class="fas fa-clock"></i> 3 dəq</span>
+                        </div>
 
-        <p class="card-text">
-          {{ article.description|default:"Bu yazı üçün qısa təsvir əlavə edilməyib." }}
-        </p>
+                        <h3 class="card-title">{{ article.title }}</h3>
 
-        <div class="card-footer">
-          <a class="btn btn-dark" href="{{ article.get_absolute_url }}">Read more</a>
-          <div class="card-stats">
-            <span><i class="fas fa-calendar"></i> {{ article.created_at|date:"d.m.Y" }}</span>
-          </div>
-        </div>
-      </div>
-    </article>
-  {% empty %}
-    <p>Hələ heç bir məqalə yoxdur.</p>
-  {% endfor %}
-          </div>
+                        <p class="card-text">
+                            {{ article.description|default:"Bu yazı üçün qısa təsvir əlavə edilməyib." }}
+                        </p>
 
-          <!-- Pagination -->
-          <div class="pagination">
-            <a href="#" class="pagination-btn active">1</a>
-            <a href="#" class="pagination-btn">2</a>
-            <a href="#" class="pagination-btn">3</a>
-            <a href="#" class="pagination-btn">Next <i class="fas fa-chevron-right"></i></a>
-          </div>
-        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-dark" href="{{ article.get_absolute_url }}">Read more</a>
+                            <div class="card-stats">
+                                <span><i class="fas fa-calendar"></i> {{ article.created_at|date:"d.m.Y" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {% empty %}
+                    <p>Bu kateqoriyada/teqdə hələ heç bir məqalə yoxdur.</p>
+                {% endfor %}
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
-          <!-- Categories -->
-<div class="sidebar-widget">
-  <h4 class="widget-title">Kateqoriyalar</h4>
-  <ul class="list-unstyled category-list">
-    {% for cat in categories %}
-      <li>
-        <a href="{% url 'blog:category_filter' cat.slug %}"
-           class="category-link {% if category and category.slug == cat.slug %}active{% endif %}">
-          {{ cat.name }}
-        </a>
-      </li>
-    {% empty %}
-      <li class="text-muted">Kateqoriya yoxdur</li>
-    {% endfor %}
-  </ul>
-</div>
-
-          <!-- Popular Posts -->
-          <div class="sidebar-widget">
-            <h3 class="widget-title">Populyar Yazılar</h3>
-            <div class="popular-posts">
-              <div class="popular-post">
-                <img src="{% static 'assets/images/blog-post-01.jpg' %}" alt="Popular Post" />
-                <div>
-                  <h4><a href="post-detail.html">Səhər motivasiyası</a></h4>
-                  <span class="post-date">15 Noyabr 2025</span>
-                </div>
-              </div>
-              <div class="popular-post">
-                <img src="{% static 'assets/images/blog-post-02.jpg' %}" alt="Popular Post" />
-                <div>
-                  <h4><a href="post-detail.html">Texnologiya və həyat</a></h4>
-                  <span class="post-date">12 Noyabr 2025</span>
-                </div>
-              </div>
-              <div class="popular-post">
-                <img src="{% static 'assets/images/blog-post-03.jpg' %}" alt="Popular Post" />
-                <div>
-                  <h4><a href="post-detail.html">Təbiət və sükunət</a></h4>
-                  <span class="post-date">10 Noyabr 2025</span>
-                </div>
-              </div>
             </div>
-          </div>
 
+            <!-- PAGINATION -->
+            <div class="pagination" style="margin-top:25px; text-align:center;">
 
-<!-- Tags -->
-<div class="sidebar-widget">
-  <h3 class="widget-title">Teqlər</h3>
-  <div class="tag-cloud">
-    {% for tag in tags %}
-      <a href="{% url 'blog:tag_filter' tag.slug %}" class="tag">
-        {{ tag.name }}
-      </a>
-    {% empty %}
-      <span class="text-muted">Teq yoxdur</span>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="pagination-btn">← Prev</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+            <span class="pagination-btn active">{{ num }}</span>
+        {% else %}
+            <a href="?page={{ num }}" class="pagination-btn">{{ num }}</a>
+        {% endif %}
     {% endfor %}
-  </div>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="pagination-btn">Next →</a>
+    {% endif %}
+
 </div>
+
+        </div> <!-- blog-main end -->
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <!-- Categories -->
+            <div class="sidebar-widget">
+                <h4 class="widget-title">Kateqoriyalar</h4>
+                <ul class="list-unstyled category-list">
+                    {% for cat in categories %}
+                        <li>
+                            <a href="{% url 'blog:category_filter' cat.slug %}"
+                              class="category-link {% if category and category.slug == cat.slug %}active{% endif %}">
+                                {{ cat.name }}
+                            </a>
+                        </li>
+                    {% empty %}
+                        <li class="text-muted">Kateqoriya yoxdur</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Tags -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Teqlər</h3>
+                <div class="tag-cloud">
+                    {% for tag in tags %}
+                        <a href="{% url 'blog:tag_filter' tag.slug %}" class="tag {% if tag_obj and tag_obj.slug == tag.slug %}active{% endif %}">
+                            {{ tag.name }}
+                        </a>
+                    {% empty %}
+                        <span class="text-muted">Teq yoxdur</span>
+                    {% endfor %}
+                </div>
+            </div>
         </aside>
-      </div>
+
     </div>
-  </main>
-
-
+</div>
+</main>
 {% endblock main %}
-
-
-
-
-
-
-

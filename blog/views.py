@@ -4,15 +4,21 @@ from .models import Article,Tag,Category
 from django.contrib.auth.decorators import login_required
 from .forms import ArticleForm
 from django.contrib import messages
+from django.core.paginator import Paginator
 # Create your views here.
 def blog_list(request):
     
     articles=Article.objects.filter(is_published=True).order_by('-created_at')
+    
+    paginator=Paginator(articles,4)
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
+    
     tags=Tag.objects.all()
     categories=Category.objects.all()
     
     context = {
-        "articles":articles,
+        "page_obj":page_obj,
         "tags":tags,
         "categories":categories
     }
@@ -34,14 +40,26 @@ def tag_filter(request,tag_slug):
     tag=get_object_or_404(Tag,slug=tag_slug)
     categories=Category.objects.all()
     articles=Article.objects.filter(is_published=True,tags=tag).order_by('-created_at')
-    return render(request,'blog/tag_list.html',{'tag':tag,'articles':articles,'categories':categories})
+    
+    
+    paginator=Paginator(articles,4)
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
+    
+    return render(request,'blog/tag_list.html',{'tag':tag,'page_obj':page_obj,'articles':articles,'categories':categories})
 
 
 def category_filter(request, cat_slug):
     category = get_object_or_404(Category, slug=cat_slug)
     articles = Article.objects.filter(is_published=True, category=category).order_by('-created_at')
-    return render(request, 'blog/tag_list.html', {
+    paginator=Paginator(articles,4)
+    page_number=request.GET.get('page')
+    page_obj=paginator.get_page(page_number)
+    
+    
+    return render(request, 'blog/tag_list.html',{
         'category': category,
+        'page_obj':page_obj,
         'articles': articles,
         'tags': Tag.objects.all(),
         'categories': Category.objects.all(),

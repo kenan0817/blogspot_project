@@ -473,15 +473,8 @@
     // =============================
     // 17. Pagination
     // =============================
-    const paginationBtns = $$(".pagination-btn");
-    paginationBtns.forEach((btn) => {
-      on(btn, "click", (e) => {
-        e.preventDefault();
-        paginationBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        // In a real application, you would load new posts here
-      });
-    });
+    
+
 
     // =============================
     // 18. Active Link Highlighting (Updated for About page)
